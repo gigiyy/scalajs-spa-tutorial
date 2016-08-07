@@ -6,12 +6,14 @@ jdk:
 - oraclejdk8
 script:
 - sbt ++$TRAVIS_SCALA_VERSION server/test client/test
-# Tricks to avoid unnecessary cache updates, from
-# http://www.scala-sbt.org/0.13/docs/Travis-CI-with-sbt.html
 - find $HOME/.sbt -name "*.lock" | xargs rm
 - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
 cache:
   directories:
-    - $HOME/.ivy2/cache
-    - $HOME/.sbt/boot/
-
+  - "$HOME/.ivy2/cache"
+  - "$HOME/.sbt/boot/"
+deploy:
+  provider: heroku
+  api_key:
+    secure: FTCKUKg4BS49vYlcD06leIVsQ/TjHBCWvp+wdlDnuvNL00qoQLP0moqvuNONu7n4Xtc88uW/7uYKCvL98umIzWbUqfZyjSLGHeIA4plmdmyY1l5EYv3RGKRaZUfW4thpaWrY1IfXAjOoqZECpyQhxUobxB6A+bfgOreayo+P/+Sx4w1gPEx3KCbiWncPq2bjxI8ZwIK7Z3erMPaUEGua5JI7aVUyfO/DE+VfDwiaHCN+LbAwlDdOy3z46Rent+5+0zsBT6jAlRl1y/08LUvoNlL220UPnoVbR2wq5HJXOl4XtaqJcCsXQm5yrEljTflzQE+yA6AubAneOPINUFQiOkgfUgTD3XrbR3tzoyJhSaCe88lCwZ84fzpnsI/9DgyLqT29I7V3Z1MbozMTjyvxnbNyhNTvdzk4UnAfXWPsr8Z25RASZ5y3ylIHf/K8MiXA/gn1jLyzUjyZz+jyosz+gUJfRkK3PyL2tQBc0wtxsdZXLK5k55npuJzGSLKO72Yu0NDdLK/4FrkP02MDcSgnXILwUsMtJN3ZRTV/J7+B2tTelMkbVUiMvLaTumaRpTcoDGI7LLsKj9xvNIKwUMHrRyn6uhakMSY1atS7NapwJDVWoxoNXsj5toyS5kwwl9n3g7VYLOOqELehZbF1YPDBfm4zkcrK4piLmsG3jqhOUUM=
+  app: gigiyy-spa
