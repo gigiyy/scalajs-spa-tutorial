@@ -24,6 +24,10 @@ object SPAMain extends js.JSApp {
 
   case object TodoLoc extends Loc
 
+  case object ClockLoc extends Loc
+
+  case object ListFileLoc extends Loc
+
   // configure the router
   val routerConfig = RouterConfigDsl[Loc].buildConfig { dsl =>
     import dsl._
@@ -32,6 +36,7 @@ object SPAMain extends js.JSApp {
     // wrap/connect components to the circuit
     (staticRoute(root, DashboardLoc) ~> renderR(ctl => SPACircuit.wrap(_.motd)(proxy => Dashboard(ctl, proxy)))
       | staticRoute("#todo", TodoLoc) ~> renderR(ctl => todoWrapper(Todo(_)))
+      | staticRoute("#clock", ClockLoc) ~> renderR(ctl => Clock())
       ).notFound(redirectToPage(DashboardLoc)(Redirect.Replace))
   }.renderWith(layout)
 
