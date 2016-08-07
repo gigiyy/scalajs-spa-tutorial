@@ -1,1 +1,1 @@
-web target/universal/stage/bin/scalajs-spa-tutorial -Dhttp.port=$PORT $JAVA_OPTS
+web target/universal/stage/bin/server -Dhttp.port=$PORT $JAVA_OPTS
