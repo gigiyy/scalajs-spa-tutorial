@@ -38,7 +38,8 @@ object Dashboard {
         state.motdWrapper(Motd(_)),
         Chart(cp),
         // create a link to the To Do view
-        <.div(props.router.link(TodoLoc)("Check your todos!"))
+        <.div(props.router.link(TodoLoc)("Check your todos!")),
+        <.div(props.router.link(ClockLoc)("A Colorful digital Clock"))
       )
     }
     .build
