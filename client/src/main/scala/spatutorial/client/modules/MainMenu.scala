@@ -32,7 +32,8 @@ object MainMenu {
   private val menuItems = Seq(
     MenuItem(1, _ => "Dashboard", Icon.dashboard, DashboardLoc),
     MenuItem(2, buildTodoMenu, Icon.check, TodoLoc),
-    MenuItem(3, _ => "Clock", Icon.clockO, ClockLoc)
+    MenuItem(3, _ => "Clock", Icon.clockO, ClockLoc),
+    MenuItem(4, _=> "List File", Icon.file, ListFileLoc)
   )
 
   private class Backend($: BackendScope[Props, Unit]) {

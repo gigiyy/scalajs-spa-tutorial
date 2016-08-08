@@ -48,4 +48,17 @@ class ApiService extends Api {
     todos = todos.filterNot(_.id == itemId)
     todos
   }
+
+  override // list server files
+  def listFile(path: String): Seq[FileItem] = {
+    val (dir, last) = path.splitAt(path.lastIndexOf("/") + 1)
+    val files =
+      Option(new java.io.File("./" + dir).listFiles())
+        .toSeq.flatten
+    for{
+      f <- files
+      if f.getName.startsWith(last)
+    } yield if(f.isDirectory) FileItem(f.getName + "/", 0)
+    else FileItem(f.getName, f.length())
+  }
 }

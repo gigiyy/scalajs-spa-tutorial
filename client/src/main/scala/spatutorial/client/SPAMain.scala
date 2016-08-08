@@ -33,10 +33,12 @@ object SPAMain extends js.JSApp {
     import dsl._
 
     val todoWrapper = SPACircuit.connect(_.todos)
+    val listFileWrapper = SPACircuit.connect(_.fileItems)
     // wrap/connect components to the circuit
     (staticRoute(root, DashboardLoc) ~> renderR(ctl => SPACircuit.wrap(_.motd)(proxy => Dashboard(ctl, proxy)))
       | staticRoute("#todo", TodoLoc) ~> renderR(ctl => todoWrapper(Todo(_)))
       | staticRoute("#clock", ClockLoc) ~> renderR(ctl => Clock())
+      | staticRoute("#list", ListFileLoc) ~> renderR(ctl => listFileWrapper(ListFile(_)))
       ).notFound(redirectToPage(DashboardLoc)(Redirect.Replace))
   }.renderWith(layout)
 

@@ -12,4 +12,7 @@ trait Api {
 
   // delete a Todo
   def deleteTodo(itemId: String): Seq[TodoItem]
+
+  // list server files
+  def listFile(path: String): Seq[FileItem]
 }
